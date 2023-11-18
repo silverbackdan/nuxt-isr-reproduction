@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 
 const { payload: { prerenderedAt } } = useNuxtApp()
 const onMountedValue = ref(false)
 const watcherCalled = ref()
+
+const prerenderedAtValue = ref()
 
 const methods = {
   updateWatcherCalled() {
@@ -12,6 +14,9 @@ const methods = {
 }
 
 onMounted(() => {
+  const { payload: { prerenderedAt } } = useNuxtApp()
+  prerenderedAtValue.value = prerenderedAt
+  console.log('prerenderedAtComputed', prerenderedAtValue.value)
   onMountedValue.value = true
   watcherCalled.value = false
   watch(onMountedValue, methods.updateWatcherCalled, {
@@ -23,6 +28,6 @@ onMounted(() => {
   <div>
     <pre>Has the onMounted value updated? `{{ onMountedValue }}`
 watcherCalled value? `{{ watcherCalled }}`
-prerenderedAt value? `{{ prerenderedAt }}`</pre>
+prerenderedAt value? `{{ prerenderedAtValue }}`</pre>
   </div>
 </template>
