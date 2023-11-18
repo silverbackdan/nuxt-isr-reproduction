@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {computed, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 
 const { payload: { prerenderedAt } } = useNuxtApp()
 const onMountedValue = ref(false)
@@ -14,7 +14,6 @@ const methods = {
 }
 
 onMounted(() => {
-  const { payload: { prerenderedAt } } = useNuxtApp()
   prerenderedAtValue.value = prerenderedAt
   console.log('prerenderedAtComputed', prerenderedAtValue.value)
   onMountedValue.value = true
