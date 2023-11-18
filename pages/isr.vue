@@ -1,3 +1,7 @@
 <template>
-  <OnMounted />
+  <div>
+    <OnMounted />
+  </div>
 </template>
+<script setup lang="ts">
+</script>
